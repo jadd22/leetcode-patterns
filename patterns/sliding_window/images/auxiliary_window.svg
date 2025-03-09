@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="600" height="200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: Arial, sans-serif; }
+    .array-box { fill: #f0f0f0; stroke: #333; stroke-width: 1; }
+    .window-box { fill: #a8d5ff; stroke: #333; stroke-width: 1; }
+    .data-structure { fill: #ffe0a8; stroke: #333; stroke-width: 1; }
+    .arrow { stroke: #333; stroke-width: 1.5; marker-end: url(#arrowhead); }
+    .label { font-size: 12px; }
+    .title { font-size: 16px; font-weight: bold; }
+  </style>
+  
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="300" y="25" text-anchor="middle" class="title">Sliding Window with Auxiliary Data Structure</text>
+  
+  <!-- Array elements -->
+  <rect x="50" y="50" width="40" height="40" class="array-box" />
+  <rect x="90" y="50" width="40" height="40" class="array-box" />
+  <rect x="130" y="50" width="40" height="40" class="window-box" />
+  <rect x="170" y="50" width="40" height="40" class="window-box" />
+  <rect x="210" y="50" width="40" height="40" class="window-box" />
+  <rect x="250" y="50" width="40" height="40" class="array-box" />
+  <rect x="290" y="50" width="40" height="40" class="array-box" />
+  <rect x="330" y="50" width="40" height="40" class="array-box" />
+  <rect x="370" y="50" width="40" height="40" class="array-box" />
+  <rect x="410" y="50" width="40" height="40" class="array-box" />
+  
+  <!-- Array values -->
+  <text x="70" y="75" text-anchor="middle">A</text>
+  <text x="110" y="75" text-anchor="middle">B</text>
+  <text x="150" y="75" text-anchor="middle">C</text>
+  <text x="190" y="75" text-anchor="middle">A</text>
+  <text x="230" y="75" text-anchor="middle">B</text>
+  <text x="270" y="75" text-anchor="middle">D</text>
+  <text x="310" y="75" text-anchor="middle">E</text>
+  <text x="350" y="75" text-anchor="middle">F</text>
+  <text x="390" y="75" text-anchor="middle">G</text>
+  <text x="430" y="75" text-anchor="middle">H</text>
+  
+  <!-- Window indicator -->
+  <path d="M 130 100 L 130 90 L 250 90 L 250 100" fill="none" stroke="#333" stroke-width="1.5" />
+  <text x="190" y="115" text-anchor="middle" class="label">Current Window</text>
+  
+  <!-- Auxiliary data structure (HashMap) -->
+  <rect x="100" y="140" width="180" height="40" rx="5" ry="5" class="data-structure" />
+  <text x="190" y="165" text-anchor="middle">HashMap: {C:1, A:1, B:1}</text>
+  <path d="M 190 90 L 190 140" class="arrow" />
+  
+  <!-- Explanation -->
+  <text x="350" y="150" text-anchor="start" class="label">Auxiliary data structure</text>
+  <text x="350" y="165" text-anchor="start" class="label">tracks window elements</text>
+</svg>

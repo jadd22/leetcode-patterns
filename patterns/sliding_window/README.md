@@ -7,6 +7,7 @@ The Sliding Window pattern is a technique used to process arrays or lists in a s
 ## When to Use Sliding Window?
 
 Use the Sliding Window pattern when you need to:
+
 - Process contiguous subarrays or sublists
 - Find maximum/minimum subarrays of a specific size
 - Find subarrays that meet certain conditions
@@ -18,23 +19,53 @@ Use the Sliding Window pattern when you need to:
 
 In this variation, the window size remains constant throughout the traversal.
 
-![Fixed Size Window](./images/fixed_window.png)
+![Fixed Size Window](./images/fixed_window.svg)
+
+![Fixed Size Window Expansion and Contraction](./images/fixed_window_expand_contract.svg)
 
 **Use cases:**
+
 - Find maximum/minimum sum subarray of size K
 - Calculate moving average of size K
 - Find all subarrays of size K with a specific property
 
-### 2. Variable Size Window
+### 2. Dynamic Size Window (Grow and Shrink)
 
 In this variation, the window size can grow or shrink based on certain conditions.
 
-![Variable Size Window](./images/variable_window.png)
+![Dynamic Size Window](./images/variable_window.svg)
+
+![Dynamic Size Window Expansion and Contraction](./images/dynamic_window_expand_contract.svg)
 
 **Use cases:**
+
 - Find smallest subarray with sum greater than or equal to S
 - Find longest substring with K distinct characters
 - Find longest substring without repeating characters
+
+### 3. Window with Auxiliary Data Structures
+
+This variation uses additional data structures (like hash maps, heaps, or deques) to track information about the elements in the window.
+
+![Window with Auxiliary Data Structures](./images/auxiliary_window.svg)
+
+**Use cases:**
+
+- Find anagrams in a string
+- Sliding window maximum/minimum
+- Substring with concatenation of all words
+
+### 4. Multi-pointer Window
+
+This variation uses multiple pointers within the window to track different conditions or requirements.
+
+![Multi-pointer Window](./images/multi_pointer_window.svg)
+
+**Use cases:**
+
+- Longest repeating character replacement
+- Substring with at most K distinct characters
+- Maximum consecutive ones after K replacements
 
 ## How It Works
 
@@ -43,13 +74,30 @@ In this variation, the window size can grow or shrink based on certain condition
 3. When a certain condition is met, contract the window from the left
 4. Keep track of the answer during this process
 
-![Sliding Window Animation](./images/sliding_window_animation.gif)
+### Step-by-Step Visualizations
+
+#### Fixed Size Window Step-by-Step
+
+![Fixed Size Window Steps](./images/fixed_window_steps.svg)
+
+#### Dynamic Size Window Step-by-Step
+
+![Dynamic Size Window Steps](./images/dynamic_window_steps.svg)
+
+#### Window with Auxiliary Data Structure Step-by-Step
+
+![Auxiliary Window Steps](./images/auxiliary_window_steps.svg)
+
+#### Multi-Pointer Window Step-by-Step
+
+![Multi-Pointer Window Steps](./images/multi_pointer_steps.svg)
 
 ## Code Templates
 
 ### Fixed Size Window
 
 #### Python
+
 ```python
 def fixed_sliding_window(arr, k):
     # Initialize variables
@@ -66,6 +114,7 @@ def fixed_sliding_window(arr, k):
 ```
 
 #### Java
+
 ```java
 public int fixedSlidingWindow(int[] arr, int k) {
     // Initialize variables
@@ -86,11 +135,12 @@ public int fixedSlidingWindow(int[] arr, int k) {
 }
 ```
 
-### Variable Size Window
+### 2. Dynamic Size Window (Grow and Shrink)
 
-#### Python
+#### Python Implementation
+
 ```python
-def variable_sliding_window(arr, target):
+def dynamic_sliding_window(arr, target):
     window_start = 0
     window_sum = 0
     min_length = float('inf')  # or 0, depending on the problem
@@ -107,9 +157,10 @@ def variable_sliding_window(arr, target):
     return min_length if min_length != float('inf') else 0
 ```
 
-#### Java
+#### Java Implementation
+
 ```java
-public int variableSlidingWindow(int[] arr, int target) {
+public int dynamicSlidingWindow(int[] arr, int target) {
     int windowStart = 0;
     int windowSum = 0;
     int minLength = Integer.MAX_VALUE;  // or 0, depending on the problem
@@ -129,9 +180,132 @@ public int variableSlidingWindow(int[] arr, int target) {
 }
 ```
 
+### 3. Window with Auxiliary Data Structures
+
+#### Python Implementation
+
+```python
+def sliding_window_with_hashmap(s, k):
+    window_start = 0
+    max_length = 0
+    char_frequency = {}  # Auxiliary data structure (HashMap)
+    
+    for window_end in range(len(s)):
+        right_char = s[window_end]
+        # Update the auxiliary data structure
+        if right_char not in char_frequency:
+            char_frequency[right_char] = 0
+        char_frequency[right_char] += 1
+        
+        # Shrink the window if needed based on the auxiliary data structure
+        while len(char_frequency) > k:  # Using the auxiliary data structure in the condition
+            left_char = s[window_start]
+            char_frequency[left_char] -= 1
+            if char_frequency[left_char] == 0:
+                del char_frequency[left_char]
+            window_start += 1
+        
+        max_length = max(max_length, window_end - window_start + 1)
+    
+    return max_length
+```
+
+#### Java Implementation
+
+```java
+public int slidingWindowWithHashMap(String s, int k) {
+    int windowStart = 0;
+    int maxLength = 0;
+    Map<Character, Integer> charFrequency = new HashMap<>();  // Auxiliary data structure
+    
+    for (int windowEnd = 0; windowEnd < s.length(); windowEnd++) {
+        char rightChar = s.charAt(windowEnd);
+        // Update the auxiliary data structure
+        charFrequency.put(rightChar, charFrequency.getOrDefault(rightChar, 0) + 1);
+        
+        // Shrink the window if needed based on the auxiliary data structure
+        while (charFrequency.size() > k) {  // Using the auxiliary data structure in the condition
+            char leftChar = s.charAt(windowStart);
+            charFrequency.put(leftChar, charFrequency.get(leftChar) - 1);
+            if (charFrequency.get(leftChar) == 0) {
+                charFrequency.remove(leftChar);
+            }
+            windowStart++;
+        }
+        
+        maxLength = Math.max(maxLength, windowEnd - windowStart + 1);
+    }
+    
+    return maxLength;
+}
+```
+
+### 4. Multi-pointer Window
+
+#### Python
+
+```python
+def longest_repeating_character_replacement(s, k):
+    window_start = 0
+    max_length = 0
+    max_repeat_count = 0  # Track the count of the most frequent character
+    char_frequency = {}
+    
+    for window_end in range(len(s)):
+        right_char = s[window_end]
+        if right_char not in char_frequency:
+            char_frequency[right_char] = 0
+        char_frequency[right_char] += 1
+        
+        # Update the count of the most frequent character
+        max_repeat_count = max(max_repeat_count, char_frequency[right_char])
+        
+        # If the number of characters to replace exceeds k, shrink the window
+        current_window_length = window_end - window_start + 1
+        if current_window_length - max_repeat_count > k:
+            left_char = s[window_start]
+            char_frequency[left_char] -= 1
+            window_start += 1
+        
+        max_length = max(max_length, window_end - window_start + 1)
+    
+    return max_length
+```
+
+#### Java
+
+```java
+public int longestRepeatingCharacterReplacement(String s, int k) {
+    int windowStart = 0;
+    int maxLength = 0;
+    int maxRepeatCount = 0;  // Track the count of the most frequent character
+    Map<Character, Integer> charFrequency = new HashMap<>();
+    
+    for (int windowEnd = 0; windowEnd < s.length(); windowEnd++) {
+        char rightChar = s.charAt(windowEnd);
+        charFrequency.put(rightChar, charFrequency.getOrDefault(rightChar, 0) + 1);
+        
+        // Update the count of the most frequent character
+        maxRepeatCount = Math.max(maxRepeatCount, charFrequency.get(rightChar));
+        
+        // If the number of characters to replace exceeds k, shrink the window
+        int currentWindowLength = windowEnd - windowStart + 1;
+        if (currentWindowLength - maxRepeatCount > k) {
+            char leftChar = s.charAt(windowStart);
+            charFrequency.put(leftChar, charFrequency.get(leftChar) - 1);
+            windowStart++;
+        }
+        
+        maxLength = Math.max(maxLength, windowEnd - windowStart + 1);
+    }
+    
+    return maxLength;
+}
+```
+
 ## Example Problems
 
-### 1. Maximum Sum Subarray of Size K
+### Example: Maximum Sum Subarray of Size K
 
 **Problem:** Find the maximum sum of any contiguous subarray of size K.
 
@@ -152,7 +326,7 @@ def max_sum_subarray(arr, k):
     return max_sum
 ```
 
-### 2. Smallest Subarray with Sum Greater than or Equal to S
+### 2. Dynamic Size Window: Smallest Subarray with Sum Greater than or Equal to S
 
 **Problem:** Find the length of the smallest contiguous subarray whose sum is greater than or equal to S.
 
@@ -175,7 +349,7 @@ def smallest_subarray_with_given_sum(arr, s):
     return min_length if min_length != float('inf') else 0
 ```
 
-### 3. Longest Substring with K Distinct Characters
+### Example: Longest Substring with K Distinct Characters
 
 **Problem:** Find the length of the longest substring with at most K distinct characters.
 
@@ -205,14 +379,97 @@ def longest_substring_with_k_distinct(s, k):
     return max_length
 ```
 
+### 4. Multi-pointer Window: Longest Repeating Character Replacement
+
+**Problem:** Find the length of the longest substring containing the same letter after replacing at most K characters.
+
+**Solution:**
+
+```python
+def longest_repeating_character_replacement(s, k):
+    window_start = 0
+    max_length = 0
+    max_repeat_count = 0  # Track the count of the most frequent character
+    char_frequency = {}
+    
+    for window_end in range(len(s)):
+        right_char = s[window_end]
+        if right_char not in char_frequency:
+            char_frequency[right_char] = 0
+        char_frequency[right_char] += 1
+        
+        # Update the count of the most frequent character
+        max_repeat_count = max(max_repeat_count, char_frequency[right_char])
+        
+        # If the number of characters to replace exceeds k, shrink the window
+        current_window_length = window_end - window_start + 1
+        if current_window_length - max_repeat_count > k:
+            left_char = s[window_start]
+            char_frequency[left_char] -= 1
+            window_start += 1
+        
+        max_length = max(max_length, window_end - window_start + 1)
+    
+    return max_length
+```
+
+### 5. Sliding Window with Deque: Maximum in Sliding Window
+
+**Problem:** Given an array and a sliding window of size k, find the maximum for each window position.
+
+**Solution:**
+
+```python
+from collections import deque
+
+def max_sliding_window(nums, k):
+    result = []
+    window = deque()  # Will store indices
+    
+    for i in range(len(nums)):
+        # Remove elements outside the current window
+        while window and window[0] < i - k + 1:
+            window.popleft()
+        
+        # Remove smaller elements as they won't be the maximum
+        while window and nums[window[-1]] < nums[i]:
+            window.pop()
+        
+        # Add current element's index
+        window.append(i)
+        
+        # Add to result if we've reached window size
+        if i >= k - 1:
+            result.append(nums[window[0]])  # window[0] contains the index of the maximum element
+    
+    return result
+```
+
 ## LeetCode Problems Using Sliding Window
 
+### Fixed Size Window Problems
+
 1. [Maximum Subarray (LeetCode #53)](https://leetcode.com/problems/maximum-subarray/)
-2. [Minimum Size Subarray Sum (LeetCode #209)](https://leetcode.com/problems/minimum-size-subarray-sum/)
-3. [Longest Substring Without Repeating Characters (LeetCode #3)](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
-4. [Longest Substring with At Most K Distinct Characters (LeetCode #340)](https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/)
-5. [Fruit Into Baskets (LeetCode #904)](https://leetcode.com/problems/fruit-into-baskets/)
-6. [Permutation in String (LeetCode #567)](https://leetcode.com/problems/permutation-in-string/)
+2. [Maximum Average Subarray I (LeetCode #643)](https://leetcode.com/problems/maximum-average-subarray-i/)
+3. [Subarray Product Less Than K (LeetCode #713)](https://leetcode.com/problems/subarray-product-less-than-k/)
+
+### Dynamic Size Window Problems
+
+1. [Minimum Size Subarray Sum (LeetCode #209)](https://leetcode.com/problems/minimum-size-subarray-sum/)
+2. [Longest Substring Without Repeating Characters (LeetCode #3)](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+3. [Fruit Into Baskets (LeetCode #904)](https://leetcode.com/problems/fruit-into-baskets/)
+
+### Window with Auxiliary Data Structures Problems
+
+1. [Longest Substring with At Most K Distinct Characters (LeetCode #340)](https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/)
+2. [Permutation in String (LeetCode #567)](https://leetcode.com/problems/permutation-in-string/)
+3. [Find All Anagrams in a String (LeetCode #438)](https://leetcode.com/problems/find-all-anagrams-in-a-string/)
+
+### Multi-pointer Window Problems
+
+1. [Longest Repeating Character Replacement (LeetCode #424)](https://leetcode.com/problems/longest-repeating-character-replacement/)
+2. [Max Consecutive Ones III (LeetCode #1004)](https://leetcode.com/problems/max-consecutive-ones-iii/)
+3. [Substring with Concatenation of All Words (LeetCode #30)](https://leetcode.com/problems/substring-with-concatenation-of-all-words/)
 
 ## Time and Space Complexity
 
