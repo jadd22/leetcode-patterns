@@ -1,6 +1,6 @@
 # LeetCode Patterns Guide
 
-Welcome to the comprehensive guide on algorithmic patterns for solving LeetCode problems. This repository contains detailed explanations, visualizations, and code implementations of common patterns used in coding interviews.
+Welcome to the comprehensive guide on algorithmic patterns for solving LeetCode problems. This repository contains detailed explanations, visualizations, and code implementations of common patterns used in coding interviews. This whole repo  and contains is created using windsurf!
 
 ## Purpose
 
