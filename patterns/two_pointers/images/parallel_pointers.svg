@@ -1,0 +1,91 @@
+<svg width="600" height="250" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="250" fill="#f8f9fa" />
+  
+  <!-- Array 1 elements -->
+  <g transform="translate(50, 80)">
+    <!-- Array boxes -->
+    <rect x="0" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="50" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="100" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="150" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="200" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="250" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    
+    <!-- Array values -->
+    <text x="25" y="30" font-family="Arial" font-size="16" text-anchor="middle">1</text>
+    <text x="75" y="30" font-family="Arial" font-size="16" text-anchor="middle">3</text>
+    <text x="125" y="30" font-family="Arial" font-size="16" text-anchor="middle">5</text>
+    <text x="175" y="30" font-family="Arial" font-size="16" text-anchor="middle">7</text>
+    <text x="225" y="30" font-family="Arial" font-size="16" text-anchor="middle">9</text>
+    <text x="275" y="30" font-family="Arial" font-size="16" text-anchor="middle">11</text>
+    
+    <!-- Array label -->
+    <text x="-30" y="25" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">arr1</text>
+  </g>
+  
+  <!-- Array 2 elements -->
+  <g transform="translate(50, 150)">
+    <!-- Array boxes -->
+    <rect x="0" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="50" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="100" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="150" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="200" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    
+    <!-- Array values -->
+    <text x="25" y="30" font-family="Arial" font-size="16" text-anchor="middle">2</text>
+    <text x="75" y="30" font-family="Arial" font-size="16" text-anchor="middle">4</text>
+    <text x="125" y="30" font-family="Arial" font-size="16" text-anchor="middle">6</text>
+    <text x="175" y="30" font-family="Arial" font-size="16" text-anchor="middle">8</text>
+    <text x="225" y="30" font-family="Arial" font-size="16" text-anchor="middle">10</text>
+    
+    <!-- Array label -->
+    <text x="-30" y="25" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">arr2</text>
+  </g>
+  
+  <!-- Result array -->
+  <g transform="translate(350, 115)">
+    <!-- Array boxes -->
+    <rect x="0" y="0" width="40" height="40" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="40" y="0" width="40" height="40" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="80" y="0" width="40" height="40" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="120" y="0" width="40" height="40" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="160" y="0" width="40" height="40" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    
+    <!-- Array values -->
+    <text x="20" y="25" font-family="Arial" font-size="14" text-anchor="middle">1</text>
+    <text x="60" y="25" font-family="Arial" font-size="14" text-anchor="middle">2</text>
+    <text x="100" y="25" font-family="Arial" font-size="14" text-anchor="middle">3</text>
+    <text x="140" y="25" font-family="Arial" font-size="14" text-anchor="middle">4</text>
+    <text x="180" y="25" font-family="Arial" font-size="14" text-anchor="middle">5</text>
+    
+    <!-- Array label -->
+    <text x="-30" y="25" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">result</text>
+  </g>
+  
+  <!-- Pointer 1 -->
+  <polygon points="75,70 85,60 65,60" fill="#0d6efd" />
+  <text x="75" y="50" font-family="Arial" font-size="14" fill="#0d6efd" text-anchor="middle">i</text>
+  
+  <!-- Pointer 2 -->
+  <polygon points="75,140 85,130 65,130" fill="#dc3545" />
+  <text x="75" y="120" font-family="Arial" font-size="14" fill="#dc3545" text-anchor="middle">j</text>
+  
+  <!-- Pointer 3 -->
+  <polygon points="390,105 400,95 380,95" fill="#20c997" />
+  <text x="390" y="85" font-family="Arial" font-size="14" fill="#20c997" text-anchor="middle">k</text>
+  
+  <!-- Title -->
+  <text x="300" y="30" font-family="Arial" font-weight="bold" font-size="20" text-anchor="middle">Parallel Pointers</text>
+  
+  <!-- Description -->
+  <text x="300" y="220" font-family="Arial" font-size="14" text-anchor="middle">
+    <tspan x="300" dy="0">Separate pointers for different arrays</tspan>
+    <tspan x="300" dy="20">Example: Merge two sorted arrays</tspan>
+  </text>
+  
+  <!-- Arrows -->
+  <path d="M 75 80 Q 200 20 370 105" fill="none" stroke="#0d6efd" stroke-width="2" stroke-dasharray="5,5" />
+  <path d="M 75 150 Q 200 210 370 125" fill="none" stroke="#dc3545" stroke-width="2" stroke-dasharray="5,5" />
+</svg>

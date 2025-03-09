@@ -1,0 +1,126 @@
+<svg width="600" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="300" fill="#f8f9fa" />
+  
+  <!-- Title -->
+  <text x="300" y="30" font-family="Arial" font-weight="bold" font-size="20" text-anchor="middle">Two Pointers Animation (Two Sum)</text>
+  
+  <!-- Array elements -->
+  <g transform="translate(50, 80)">
+    <!-- Array boxes -->
+    <rect x="0" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="50" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="100" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="150" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="200" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="250" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="300" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="350" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="400" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    <rect x="450" y="0" width="50" height="50" fill="#e9ecef" stroke="#495057" stroke-width="2" />
+    
+    <!-- Array values (sorted) -->
+    <text x="25" y="30" font-family="Arial" font-size="16" text-anchor="middle">1</text>
+    <text x="75" y="30" font-family="Arial" font-size="16" text-anchor="middle">2</text>
+    <text x="125" y="30" font-family="Arial" font-size="16" text-anchor="middle">3</text>
+    <text x="175" y="30" font-family="Arial" font-size="16" text-anchor="middle">4</text>
+    <text x="225" y="30" font-family="Arial" font-size="16" text-anchor="middle">5</text>
+    <text x="275" y="30" font-family="Arial" font-size="16" text-anchor="middle">6</text>
+    <text x="325" y="30" font-family="Arial" font-size="16" text-anchor="middle">7</text>
+    <text x="375" y="30" font-family="Arial" font-size="16" text-anchor="middle">8</text>
+    <text x="425" y="30" font-family="Arial" font-size="16" text-anchor="middle">9</text>
+    <text x="475" y="30" font-family="Arial" font-size="16" text-anchor="middle">10</text>
+    
+    <!-- Array indices -->
+    <text x="25" y="-10" font-family="Arial" font-size="12" text-anchor="middle">0</text>
+    <text x="75" y="-10" font-family="Arial" font-size="12" text-anchor="middle">1</text>
+    <text x="125" y="-10" font-family="Arial" font-size="12" text-anchor="middle">2</text>
+    <text x="175" y="-10" font-family="Arial" font-size="12" text-anchor="middle">3</text>
+    <text x="225" y="-10" font-family="Arial" font-size="12" text-anchor="middle">4</text>
+    <text x="275" y="-10" font-family="Arial" font-size="12" text-anchor="middle">5</text>
+    <text x="325" y="-10" font-family="Arial" font-size="12" text-anchor="middle">6</text>
+    <text x="375" y="-10" font-family="Arial" font-size="12" text-anchor="middle">7</text>
+    <text x="425" y="-10" font-family="Arial" font-size="12" text-anchor="middle">8</text>
+    <text x="475" y="-10" font-family="Arial" font-size="12" text-anchor="middle">9</text>
+  </g>
+  
+  <!-- Animation -->
+  <g>
+    <!-- Step 1: Initial pointers -->
+    <g opacity="1">
+      <polygon points="75,70 85,60 65,60" fill="#0d6efd" />
+      <text x="75" y="50" font-family="Arial" font-size="14" fill="#0d6efd" text-anchor="middle">left</text>
+      
+      <polygon points="475,70 485,60 465,60" fill="#dc3545" />
+      <text x="475" y="50" font-family="Arial" font-size="14" fill="#dc3545" text-anchor="middle">right</text>
+      
+      <text x="300" y="160" font-family="Arial" font-size="14" text-anchor="middle">
+        <tspan x="300" dy="0">Target = 12</tspan>
+        <tspan x="300" dy="20">Current Sum = 2 + 10 = 12 ✓</tspan>
+        <tspan x="300" dy="20">Found pair: [1, 9]</tspan>
+      </text>
+      
+      <animate id="step1" attributeName="opacity" from="1" to="0" begin="0s; step4.end" dur="2s" fill="freeze" />
+    </g>
+    
+    <!-- Step 2: Move pointers (example with target = 9) -->
+    <g opacity="0">
+      <polygon points="25,70 35,60 15,60" fill="#0d6efd" />
+      <text x="25" y="50" font-family="Arial" font-size="14" fill="#0d6efd" text-anchor="middle">left</text>
+      
+      <polygon points="425,70 435,60 415,60" fill="#dc3545" />
+      <text x="425" y="50" font-family="Arial" font-size="14" fill="#dc3545" text-anchor="middle">right</text>
+      
+      <text x="300" y="160" font-family="Arial" font-size="14" text-anchor="middle">
+        <tspan x="300" dy="0">Target = 10</tspan>
+        <tspan x="300" dy="20">Current Sum = 1 + 9 = 10 ✓</tspan>
+        <tspan x="300" dy="20">Found pair: [0, 8]</tspan>
+      </text>
+      
+      <animate id="step2" attributeName="opacity" from="0" to="1" begin="step1.end" dur="2s" fill="freeze" />
+      <animate attributeName="opacity" from="1" to="0" begin="step2.end" dur="2s" fill="freeze" />
+    </g>
+    
+    <!-- Step 3: Move pointers again -->
+    <g opacity="0">
+      <polygon points="125,70 135,60 115,60" fill="#0d6efd" />
+      <text x="125" y="50" font-family="Arial" font-size="14" fill="#0d6efd" text-anchor="middle">left</text>
+      
+      <polygon points="325,70 335,60 315,60" fill="#dc3545" />
+      <text x="325" y="50" font-family="Arial" font-size="14" fill="#dc3545" text-anchor="middle">right</text>
+      
+      <text x="300" y="160" font-family="Arial" font-size="14" text-anchor="middle">
+        <tspan x="300" dy="0">Target = 10</tspan>
+        <tspan x="300" dy="20">Current Sum = 3 + 7 = 10 ✓</tspan>
+        <tspan x="300" dy="20">Found pair: [2, 6]</tspan>
+      </text>
+      
+      <animate id="step3" attributeName="opacity" from="0" to="1" begin="step2.end" dur="2s" fill="freeze" />
+      <animate attributeName="opacity" from="1" to="0" begin="step3.end" dur="2s" fill="freeze" />
+    </g>
+    
+    <!-- Step 4: Final state -->
+    <g opacity="0">
+      <polygon points="225,70 235,60 215,60" fill="#0d6efd" />
+      <text x="225" y="50" font-family="Arial" font-size="14" fill="#0d6efd" text-anchor="middle">left</text>
+      
+      <polygon points="225,70 235,60 215,60" fill="#dc3545" />
+      <text x="225" y="50" font-family="Arial" font-size="14" fill="#dc3545" text-anchor="middle">right</text>
+      
+      <text x="300" y="160" font-family="Arial" font-size="14" text-anchor="middle">
+        <tspan x="300" dy="0">Pointers meet</tspan>
+        <tspan x="300" dy="20">All possible pairs checked</tspan>
+        <tspan x="300" dy="20">Algorithm terminates</tspan>
+      </text>
+      
+      <animate id="step4" attributeName="opacity" from="0" to="1" begin="step3.end" dur="2s" fill="freeze" />
+      <animate attributeName="opacity" from="1" to="0" begin="step4.end" dur="2s" fill="freeze" />
+    </g>
+  </g>
+  
+  <!-- Explanation -->
+  <text x="300" y="230" font-family="Arial" font-size="16" text-anchor="middle">
+    <tspan x="300" dy="0">Two pointers approach for finding pairs that sum to target</tspan>
+    <tspan x="300" dy="25">Time Complexity: O(n), Space Complexity: O(1)</tspan>
+  </text>
+</svg>
